@@ -1748,9 +1748,8 @@ docker compose exec web python manage.py shell
 
 4. You no longer use the async_to_sync() helper function when calling methods on the channel layer.
 
-text```
-Open the URL http://127.0.0.1:8000/chat/room/1/ with two different browser windows again. and verify that the chat server still works. The chat server is now fully asynchronous!
-```
+## Open the URL http://127.0.0.1:8000/chat/room/1/ with two different browser windows again. and verify that the chat server still works. The chat server is now fully asynchronous!
+
 
 # Persisting messages into the database
 
