@@ -1,6 +1,6 @@
 # Dockerized E-Learning Platform | Django, REST & Real-Time Features
 
-This project is a Dockerized version of the final project initiate by me from *Django 5 By Example* by Antonio Melé.
+This project is a Dockerized version of the final project initiated by me from *Django 5 By Example* by Antonio Melé.
 It includes REST APIs, real-time features with WebSockets, and a fully containerized setup for development and production.
 
 > **Note:** Make sure to run Docker commands from the same path as your editor to avoid path issues.
