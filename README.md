@@ -50,9 +50,9 @@ RUN chmod +x /code/wait-for-it.sh
 
 2. The following environment variables are set:
 
-	a. PYTHONDONTWRITEBYTECODE : This prevents Python from writing out pyc files.
+		a. PYTHONDONTWRITEBYTECODE : This prevents Python from writing out pyc files.
 
-	b. PYTHONUNBUFFERED : This ensures that the Python stdout and stderr streams are sent 	straight to the terminal without first being buffered.
+		b. PYTHONUNBUFFERED : This ensures that the Python stdout and stderr streams are sent 	straight to the terminal without first being buffered.
 
 3. The WORKDIR command is used to define the working directory of the image.
 
