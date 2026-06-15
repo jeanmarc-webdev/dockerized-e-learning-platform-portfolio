@@ -26,7 +26,6 @@ It includes REST APIs, real-time features with WebSockets, and a fully container
 ## Dockerfile:
 
 ```dockerfile
-
 FROM python:3.12.6
 
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -100,7 +99,6 @@ services:
     depends_on:
       - db
       - cache
-
 ```
 
 ## In this file, you define a web service. The sections to define this service are as follows:
@@ -157,6 +155,7 @@ Docker compose build
 ```bash
 docker compose run --rm web django-admin startproject educa . 
 ```
+
 # Setting up your setting.py
 
 ## setting.py
@@ -382,13 +381,13 @@ docker compose exec web python manage.py migrate
 
 ## In this method, you perform the following actions:
 
-1. You check whether a value already exists for this field in the model instance. You use self.attname , which is the attribute name given to the field in the model. If the attribute’s value is different from None , you calculate the order you should give it as follows:
+1. You check whether a value already exists for this field in the model instance. You use self.attname , which is the attribute name given to the field in the model. If      the attribute’s value is different from None , you calculate the order you should give it as follows:
 
-	a. You build a QuerySet to retrieve all objects for the field’s model. You retrieve the 	model class the field belongs to by accessing self.model .
+	a. You build a QuerySet to retrieve all objects for the field’s model. You retrieve the model class the field belongs to by accessing self.model .
 
-	b. If there are any field names in the for_fields attribute of the field, you filter the 	QuerySet by the current value of the model fields in for_fields . By doing so, you 	calculate the order with respect to the given fields.
+	b. If there are any field names in the for_fields attribute of the field, you filter the QuerySet by the current value of the model fields in for_fields . By doing           so, you calculate the order with respect to the given fields.
 
-	c. You retrieve the object with the highest order with last_item 	=qs.latest(self.attname) from the database. If no object is found,you assume this object 	is the first one and assign order 0 to it.
+	c. You retrieve the object with the highest order with last_item =qs.latest(self.attname) from the database. If no object is found,you assume this object is the first        one and assign order 0 to it.
 
 	d. If an object is found, you add 1 to the highest order found.
 
@@ -863,7 +862,6 @@ INSTALLED_APPS = [
     # …
         'embed_video',
 		# …
-
 ]
 ```
 
@@ -967,7 +965,6 @@ docker compose exec web python manage.py shell
 ```bash
 python -m pip install django-debug-toolbar==4.3.0
 ```
-
 
 ## Update settings.py:
 
@@ -1371,7 +1368,7 @@ docker compose exec web python manage.py shell
 
 1. You use the action decorator of the framework with the parameter detail=True to specify that this is an action to be performed on a single object.
 
-2. The decorator allows you to add custom attributes for the action. You specify that only the post() method is allowed for this view and set the authentication and permission classes.
+2. The decorator allows you to add custom attributes for the action. You specify that only the post() method is allowed for this view and set the authentication and          permission classes.
 
 3. You use self.get_object() to retrieve the Course object.
 
@@ -1421,7 +1418,7 @@ api_examples/
 
 3. You use a while statement to paginate over all result pages.
 
-4. You use requests.get() to retrieve data from the API by sending a GET request to the URL http://127.0.0.1:8000/api/courses/ . This API endpoint is publicly accessible, so it does not require any authentication.
+4. You use requests.get() to retrieve data from the API by sending a GET request to the URL http://127.0.0.1:8000/api/courses/ . This API endpoint is publicly accessible,    so it does not require any authentication.
 
 5. You use the json() method of the response object to decode the JSON data returned by the API.
 
@@ -1452,7 +1449,7 @@ python enroll_all.py
 3. You store the course ID attribute in the course_id variable and the title attribute in the course_title variable.
 
 4. You use requests.post() to send a POST request to the URL
-http://127.0.0.1:8000/api/courses/[id]/enroll/ for each course. This URL corresponds to the CourseEnrollView API view, which allows you to enroll a user in a course. You build the URL for each course using the course_id variable. The CourseEnrollView view requires authentication. It uses the IsAuthenticated permission and the BasicAuthentication authentication class. The Requests library supports HTTP basic authentication out of the box. You use the auth parameter to pass a tuple with the username and password to authenticate the user, using HTTP basic authentication.
+   http://127.0.0.1:8000/api/courses/[id]/enroll/ for each course. This URL corresponds to the CourseEnrollView API view, which allows you to enroll a user in a course.      You build the URL for each course using the course_id variable. The CourseEnrollView view requires authentication. It uses the IsAuthenticated permission and the          BasicAuthentication authentication class. The Requests library supports HTTP basic authentication out of the box. You use the auth parameter to pass a tuple with the      username and password to authenticate the user, using HTTP basic authentication.
 
 5. If the status code of the response is 200 OK , you print a message to indicate that the user has been successfully enrolled in the course.
 
@@ -1535,7 +1532,7 @@ templates/
 
 3. You also define a second <div> element with a text input and a submit button that will allow the user to send messages.
 
-4. You add the include_js and domready blocks defined in the base.html template, which you are going to implement later, to establish a connection with a WebSocket and send or receive messages.
+4. You add the include_js and domready blocks defined in the base.html template, which you are going to implement later, to establish a connection with a WebSocket and       send or receive messages.
 
 ## Open http://127.0.0.1:8000/chat/room/1/
 
@@ -1575,7 +1572,6 @@ INSTALLED_APPS = [
     # …
         'daphne',
 		# …
-
 ]
 ```
 
@@ -1695,13 +1691,13 @@ docker compose exec web python manage.py shell
 
 ## In the new connect() method, you perform the following tasks:
 
-1. You retrieve the course id from the scope to know the course that the chat room is associated with. You access self.scope['url_route'] ['kwargs']['course_id'] to retrieve the course_id parameter from the URL. Every consumer has a scope with information about its connection, arguments passed by the URL, and the authenticated user, if any.
+1. You retrieve the course id from the scope to know the course that the chat room is associated with. You access self.scope['url_route'] ['kwargs']['course_id'] to          retrieve the course_id parameter from the URL. Every consumer has a scope with information about its connection, arguments passed by the URL, and the authenticated        user, if any.
 
-2. You build the group name with the id of the course that the group corresponds to. Remember that you will have a channel group for each course chat room. You store the group name in the room_group_name attribute of the consumer.
+2. You build the group name with the id of the course that the group corresponds to. Remember that you will have a channel group for each course chat room. You store the     group name in the room_group_name attribute of the consumer.
 
-3. You join the group by adding the current channel to the group. You obtain the channel name from the channel_name attribute of the consumer. You use the group_add method of the channel layer to add the channel to the group. You use the async_to_sync() wrapper to use the channel layer asynchronous method.
+3. You join the group by adding the current channel to the group. You obtain the channel name from the channel_name attribute of the consumer. You use the group_add          method of the channel layer to add the channel to the group. You use the async_to_sync() wrapper to use the channel layer asynchronous method.
 
-4. You keep the self.accept() call to accept the WebSocket connection. When the ChatConsumer consumer receives a new WebSocket connection, it adds the channel to the group associated with the course in its scope. The consumer is now able to receive any messages sent to the group.
+4. You keep the self.accept() call to accept the WebSocket connection. When the ChatConsumer consumer receives a new WebSocket connection, it adds the channel to the         group associated with the course in its scope. The consumer is now able to receive any messages sent to the group.
 
 ## You use the async_to_sync() wrapper to use the channel layer asynchronous method.
 - type
@@ -1723,9 +1719,9 @@ docker compose exec web python manage.py shell
 
 3. The constant source gets the value me if the user sending the message is the current user, or other otherwise.
 
-4. The constant name gets the value Me if the user sending the message is the current user or the name of the user sending the message otherwise. You use it to display the name of the user sending the message.
+4. The constant name gets the value Me if the user sending the message is the current user or the name of the user sending the message otherwise. You use it to display       the name of the user sending the message.
 
-5. You use the source value as a class of the main <div> message element to differentiate messages sent by the current user from messages sent by others. Different CSS styles are applied based on the class attribute. These CSS styles are declared in the css/base.css static file.
+5. You use the source value as a class of the main <div> message element to differentiate messages sent by the current user from messages sent by others. Different CSS       styles are applied based on the class attribute. These CSS styles are declared in the css/base.css static file.
 
 6. You use the username and the datetime in the message that you append to the chat log.
 
@@ -1962,7 +1958,7 @@ Open the Docker Desktop application. You should see now the Docker application r
         requirements.txt
 ```
 
-Edit the config/uwsgi/uwsgi.ini:
+## Edit the config/uwsgi/uwsgi.ini:
 
 ```uwsgi
 [uwsgi]
@@ -2053,7 +2049,7 @@ server {
 
 2. You set the server name to both www.educaproject.com and educaproject.com . NGINX will serve incoming requests for both domains.
 
-3. You use stderr for the error_log directive to get error logs written to the standard error file. The second parameter determines the logging level. You use warn to get warnings and errors of higher severity.
+3. You use stderr for the error_log directive to get error logs written to the standard error file. The second parameter determines the logging level. You use warn to get    warnings and errors of higher severity.
 
 4. You point access_log to the standard output with /dev/stdout .
 
@@ -2099,8 +2095,8 @@ server {
 
 5. Add this line at the bottom:
 
-- 127.0.0.1 educaproject.com
-- 127.0.0.1 www.educaproject.com
+   - 127.0.0.1 educaproject.com
+   - 127.0.0.1 www.educaproject.com
 
 6. Run:http://educaproject.com
 
@@ -2215,7 +2211,7 @@ docker compose exec web python manage.py check --deploy --settings=educa.setting
 ```text
 (security.W004) You have not set a value for the SECURE_HSTS_SECO
 (security.W009) Your SECRET_KEY has less than 50 characters…………………………… which will disappear when you will create a self-certificate.
-```text
+```
 
 # Creating an SSL/TLS certificate
 
@@ -2378,9 +2374,9 @@ docker compose up
 
 ## When an HTTP request is received, you perform the following tasks:
 
-1. You get the hostname that is being used in the request and divide it into parts. For example, if the user is accessing mycourse.educaproject.com , you generate the ['mycourse', 'educaproject', 'com'] list.
+1. You get the hostname that is being used in the request and divide it into parts. For example, if the user is accessing mycourse.educaproject.com , you generate the        ['mycourse', 'educaproject', 'com'] list.
 
-2. You check whether the hostname includes a subdomain by checking whether the split generated more than two elements. If the hostname includes a subdomain, and this is not www , you try to get the course with the slug provided in the subdomain.
+2. You check whether the hostname includes a subdomain by checking whether the split generated more than two elements. If the hostname includes a subdomain, and this is      not www , you try to get the course with the slug provided in the subdomain.
 
 3. If a course is not found, you raise an HTTP 404 exception. Otherwise, you redirect the browser to the course detail URL.
 
@@ -2439,9 +2435,9 @@ management/
 
 - You include a help attribute. This attribute provides a short description of the command that is printed if you run the python manage.py help enroll_reminder command.
 
-- You use the add_arguments() method to add the --days named argument. This argument is used to specify the minimum number of days a user has to be registered, without having enrolled in any course, in order to receive the reminder.
+- You use the add_arguments() method to add the --days named argument. This argument is used to specify the minimum number of days a user has to be registered, without      having enrolled in any course, in order to receive the reminder.
 
-- The handle() command contains the actual command. You get the days attribute parsed from the command line. If this is not set, you use 0 , so that a reminder is sent to all users that haven’t enrolled on a course, regardless of when they registered. You use the timezone utility provided by Django to retrieve the current timezone-aware date with timezone.now().date() . (You can set the timezone for your project with the TIME_ZONE setting.) You retrieve the users who have been registered for more than the specified days and are not enrolled in any courses yet. You achieve this by annotating the QuerySet with the total number of courses each user is enrolled in. You generate the reminder email for each user and append it to the emails list. Finally, you send the emails using the send_mass_mail() function, which is optimized to open a single SMTP connection for sending all emails, instead of opening one connection per email sent.
+- The handle() command contains the actual command. You get the days attribute parsed from the command line. If this is not set, you use 0 , so that a reminder is sent to   all users that haven’t enrolled on a course, regardless of when they registered. You use the timezone utility provided by Django to retrieve the current timezone-aware    date with timezone.now().date() . (You can set the timezone for your project with the TIME_ZONE setting.) You retrieve the users who have been registered for more than    the specified days and are not enrolled in any courses yet. You achieve this by annotating the QuerySet with the total number of courses each user is enrolled in. You     generate the reminder email for each user and append it to the emails list. Finally, you send the emails using the send_mass_mail() function, which is optimized to open   a single SMTP connection for sending all emails, instead of opening one connection per email sent.
 
 ## Open the cmd and run your command:
 
